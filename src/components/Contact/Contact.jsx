@@ -3,10 +3,9 @@ import { BsFillPersonFill, BsTelephoneFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
 const Contact = ({ name, number }) => {
-  console.log({ name, number });
   return (
     <>
-      <div>
+      <div className={classes.contactInfo}>
         <div>
           <BsFillPersonFill />
           <span>{name}</span>
@@ -17,7 +16,7 @@ const Contact = ({ name, number }) => {
         </div>
       </div>
 
-      <button>Delete</button>
+      <button className={classes.deletedBtn}>Delete</button>
     </>
   );
 };
