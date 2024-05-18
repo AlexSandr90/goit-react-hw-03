@@ -1,6 +1,7 @@
 import classes from './Contact.module.css';
 import { BsFillPersonFill, BsTelephoneFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
+import CustomButton from '../CustomButton/CustomButton';
 
 const Contact = ({ name, number }) => {
   return (
@@ -15,8 +16,7 @@ const Contact = ({ name, number }) => {
           <span>{number}</span>
         </div>
       </div>
-
-      <button className={classes.deletedBtn}>Delete</button>
+      <CustomButton buttonText={'Delete'} />
     </>
   );
 };

@@ -1,4 +1,14 @@
 .contactForm {
     display: flex;
     flex-direction: column;
+    row-gap: 15px;
+
+    padding: 20px;
+    border: 2px solid #000;
+
+
+    &_Item {
+        display: flex;
+        flex-direction: column;
+    }
 }
