@@ -5,10 +5,12 @@
 
     padding: 20px;
     border: 2px solid #000;
+    border-radius: 8px;
+    width: 300px;
+}
 
+.contactForm_Item {
+    display: flex;
+    flex-direction: column;
 
-    &_Item {
-        display: flex;
-        flex-direction: column;
-    }
 }
