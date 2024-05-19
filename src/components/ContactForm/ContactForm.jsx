@@ -13,6 +13,10 @@ const ContactFormSchema = Yup.object().shape({
   number: Yup.string()
     .min(2, 'Too Short!')
     .max(12, 'Too Long!')
+    .matches(
+      /^\d{3}-\d{2}-\d{2}$/,
+      'Invalid phone number format. Expected format: 222-33-77'
+    )
     .required('Required'),
 });
 
