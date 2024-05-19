@@ -1,8 +1,20 @@
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import classes from './ContactForm.module.css';
 import CustomButton from '../CustomButton/CustomButton';
 import { useId } from 'react';
 import PropTypes from 'prop-types';
+import * as Yup from 'yup';
+
+const ContactFormSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  number: Yup.string()
+    .min(2, 'Too Short!')
+    .max(12, 'Too Long!')
+    .required('Required'),
+});
 
 const initialValue = {
   name: '',
@@ -14,23 +26,34 @@ const ContactForm = ({ addContact }) => {
   const numberId = useId();
 
   const handleSubmit = (values, { resetForm }) => {
-    const { name, number } = values;
-    if (name.length > 0 && number.length > 0) {
-      addContact({ id: Date.now(), ...values });
-      resetForm();
-    }
+    addContact({ id: Date.now().toString(), ...values });
+    resetForm();
   };
 
   return (
-    <Formik initialValues={initialValue} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValue}
+      onSubmit={handleSubmit}
+      validationSchema={ContactFormSchema}
+    >
       <Form className={classes.contactForm}>
         <div className={classes.contactForm_Item}>
           <label htmlFor={nameId}>Name</label>
           <Field type="text" name="name" id={nameId} />
+          <ErrorMessage
+            name="name"
+            component="span"
+            className={classes.error}
+          />
         </div>
         <div className={classes.contactForm_Item}>
           <label htmlFor={numberId}>Number</label>
           <Field type="text" name="number" id={numberId} />
+          <ErrorMessage
+            name="number"
+            component="span"
+            className={classes.error}
+          />
         </div>
         <CustomButton type="submit" buttonText={'Add Contact'} />
       </Form>
