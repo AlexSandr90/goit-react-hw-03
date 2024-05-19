@@ -2,13 +2,13 @@ import Contact from '../Contact/Contact';
 import classes from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, deletedContact }) => {
   return (
     <ul className={classes.contactList}>
-      {contacts.map(({ id, ...otherProps }) => {
+      {contacts.map((contact) => {
         return (
-          <li className={classes.contact} key={id}>
-            <Contact {...otherProps} />
+          <li className={classes.contact} key={contact.id}>
+            <Contact deletedContact={deletedContact} {...contact} />
           </li>
         );
       })}
@@ -20,4 +20,5 @@ export default ContactList;
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
+  deletedContact: PropTypes.func.isRequired,
 };

@@ -3,7 +3,7 @@ import { BsFillPersonFill, BsTelephoneFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
 import CustomButton from '../CustomButton/CustomButton';
 
-const Contact = ({ name, number }) => {
+const Contact = ({ id, name, number, deletedContact }) => {
   return (
     <>
       <div className={classes.contactInfo}>
@@ -16,7 +16,7 @@ const Contact = ({ name, number }) => {
           <span>{number}</span>
         </div>
       </div>
-      <CustomButton buttonText={'Delete'} />
+      <CustomButton buttonText={'Delete'} onClick={() => deletedContact(id)} />
     </>
   );
 };
@@ -24,6 +24,8 @@ const Contact = ({ name, number }) => {
 export default Contact;
 
 Contact.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
+  deletedContact: PropTypes.func.isRequired,
 };
